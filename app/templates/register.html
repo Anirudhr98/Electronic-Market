@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+REGISTER PAGE
+{% endblock %}
+
+{% block body %}
+
+<br>
+<h2 style="text-align:center">Please Create Your Account</h2>
+<br>
+<form style="text-align: center" class="form-register" method="POST">
+    <div class="container w-50">
+    {{form.hidden_tag()}}
+        {{ form.username.label() }}
+        <br>
+        <br>
+        {{form.username(class = "form-control", placheholder = "User Name")}}
+        <br>
+        {{ form.email_address.label() }}
+        <br>
+        <br>
+        {{form.email_address(class = "form-control", placheholder = "Email Address")}}
+        <br>
+        {{ form.password1.label() }}
+        <br>
+        <br>
+        {{form.password1(class = "form-control", placheholder = "Password")}}
+        <br>
+        {{ form.password2.label() }}
+        <br>
+        <br>
+        {{form.password2(class = "form-control", placheholder = "Confim Password")}}
+        <br>
+        <br>
+        {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+    </div>
+</form>
+
+{% endblock %}
