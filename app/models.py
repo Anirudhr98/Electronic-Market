@@ -1,4 +1,5 @@
 from market import db
+from market import bcrypt
 
 class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
