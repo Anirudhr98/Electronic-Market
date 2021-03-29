@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+REGISTER PAGE
+{% endblock %}
+
+{% block body %}
+
+<br>
+<h2 style="text-align:center">Please Enter Your Login Credentials</h2>
+<br>
+<form style="text-align: center" class="form-register" method="POST">
+    <div class="container w-50">
+    {{form.hidden_tag()}}
+        {{ form.username.label() }}
+        <br>
+        <br>
+        {{form.username(class = "form-control", placheholder = "User Name")}}
+        <br>
+        <br>
+        {{ form.password.label() }}
+        <br>
+        <br>
+        {{form.password(class = "form-control", placheholder = "Password")}}
+        <br>
+        <br>
+        {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        <br>
+        <br>
+        <a class = "btn btn-warning mt-3" href="{{ url_for('register_page') }}">Create Account</a>
+
+    </div>
+</form>
+
+{% endblock %}

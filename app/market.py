@@ -1,12 +1,19 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-
+from flask_login import LoginManager,login_user
+login_manager = LoginManager()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db'
 app.config['SECRET_KEY'] = 'ec9439cfc6c796ae2029594d'
 db = SQLAlchemy(app)
+login_manager = LoginManager(app)
 bcrypt = Bcrypt(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    from models import User
+    return User.query.get(int(user_id))
 
 @app.route('/')
 def home_page():
@@ -36,6 +43,23 @@ def register_page():
         for err_msg in form.errors.values():
             flash(f'There was an error with creating a user: {err_msg}', category='danger')
     return render_template('register.html', form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    from forms import LoginForm
+    from models import User
+    form = LoginForm()
+    if form.validate_on_submit():
+        attempted_user = User.query.filter_by(name = form.username.data).first()
+        if attempted_user and attempted_user.check_password_correction(
+        attempted_password = form.password.data
+        ):
+            login_user(attempted_user)
+            flash("You have been loged in successfully")
+            return redirect(url_for('market_page'))
+        else:
+            flash("Username and Password are not matched..!!")    
+    return render_template('login.html', form=form)
      
 if __name__ == '__main__':
     app.run(debug=True)
