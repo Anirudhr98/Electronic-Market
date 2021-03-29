@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager,login_user
+from flask_login import LoginManager,login_user,logout_user
 login_manager = LoginManager()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db'
@@ -60,6 +60,12 @@ def login_page():
         else:
             flash("Username and Password are not matched..!!")    
     return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout_page():
+    logout_user()
+    flash("You have been logged out")
+    return redirect(url_for('market_page'))   
      
 if __name__ == '__main__':
     app.run(debug=True)
