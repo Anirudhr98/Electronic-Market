@@ -3,32 +3,46 @@
 {% block title %}
 MARKET PAGE
 {% endblock %}
-
 {% block body %}
-<table class="table table-bordered table-striped text-center center-block align-middle mt-5">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">NAME</th>
-        <th scope="col">PRICE</th>
-        <th scope="col">BARCODE</th>
-        <th scope="col">OPTIONS</th>
+<div class="row">
+  <div class="col-8">
+    <h3 class="mt-5">AVAILABLE ITEMS IN THE MARKET</h3>
+    <br>
+    <h6>CLICK ONE OF THE ITEMS TO START PURCHASING</h6>
 
-      </tr>
-    </thead>
-    <tbody>
+    <table class="table table-bordered table-striped text-center center-block align-middle mt-5">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">NAME</th>
+          <th scope="col">PRICE</th>
+          <th scope="col">BARCODE</th>
+          <th scope="col">OPTIONS</th>
+
+        </tr>
+      </thead>
+      <tbody>
         {% for item in items %}
-      <tr>
-        <td>{{item.id}}</th>
-        <td>{{item.name}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.barcode}}</td>
-        <td>
-            <button type="button" class="btn btn-outline-info">More info</button>
-            <button type="button" class="btn btn-outline-danger">Purchase this item</button>        
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+        {% include 'includes/items_modals.html' %}
+
+        <tr>
+          <td>{{item.id}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.barcode}}</td>
+          <td>
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" ,
+              data-target="#modal-{{item.id}}">More info</button>
+            <button type="button" class="btn btn-outline-danger">Purchase this item</button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-4">
+    <h5 class="mt-5">OWNED ITEMS</h5>
+  </div>
+</div>
 {% endblock %}

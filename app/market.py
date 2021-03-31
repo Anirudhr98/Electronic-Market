@@ -11,6 +11,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login_page"
 bcrypt = Bcrypt(app)
 
+
 @login_manager.user_loader
 def load_user(user_id):
     from models import User
