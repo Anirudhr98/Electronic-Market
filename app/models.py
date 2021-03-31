@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     @property
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password, attempted_password)
-    
+
     @property
     def prettier_budget(self):
         if len(str(self.budget)) >=4:
