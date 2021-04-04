@@ -4,12 +4,11 @@
 MARKET PAGE
 {% endblock %}
 {% block body %}
-<div class="row">
+<div class="row" style="margin-top:20px; margin-left:20px">
   <div class="col-8">
     <h3 class="mt-5">AVAILABLE ITEMS IN THE MARKET</h3>
     <br>
     <h6>CLICK ONE OF THE ITEMS TO START PURCHASING</h6>
-
     <table class="table table-bordered table-striped text-center center-block align-middle mt-5">
       <thead>
         <tr>
@@ -42,7 +41,28 @@ MARKET PAGE
   </div>
 
   <div class="col-4">
-    <h5 class="mt-5">OWNED ITEMS</h5>
+    <h3 class= "mt-5">Owned Items</h3>
+    <br>
+    <h6>CLICK ON SELL ITEM TO PUT IT BACK TO THE MARKET</h6>
+    <br>
+    <div class="row mt-3">
+      {% for owned_item in owned_items %}
+      {% include 'includes/owned_items_modals.html' %}
+      <div class="col-md-8">
+        <div  class="card text-center bg-light mb-5">
+          <div class="card-body">
+            <h5 class="card-title">{{ owned_item.name }}</h5>
+            <button type="button" class="btn btn-outline-danger" style="margin-bottom: 5px" data-toggle="modal"
+              data-target="#sell_modal-{{owned_item.id}}">
+              Sell this Item
+            </button>
+            <p class="card-text"><strong>
+                This item costs {{ owned_item.price }}
+              </strong></p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}
