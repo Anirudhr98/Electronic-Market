@@ -1,5 +1,5 @@
 # Electronic-Market
-## Electronic Market is a website where users can register for buying and selling electonic items.
+## Electronic Market is a website where users can register for buying and selling electronic items.
 ## Every user has a predetermined set of credits which he/she can use for the transactions.
 ### Technologies used :
 ####  Coding Language - Python
