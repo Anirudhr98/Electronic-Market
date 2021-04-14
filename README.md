@@ -3,7 +3,7 @@
 ## Every user has a predetermined set of credits which he/she can use for the transactions.
 ### Technologies used :
 ####  Coding Language - Python
-####  Web Framework - Flask and associated libraries
+####  Web Framework - Flask 
 ####  Database - SQLAlchemy
 ####  Version Control - GIT
 
